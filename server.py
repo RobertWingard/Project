@@ -49,7 +49,7 @@ while running:
             mob_loc.center = left_lane, -200
 
 #damage
-    if goku_loc[0] == mob_loc[0] and mob_loc[1] == goku_loc[1]:
+    if goku_loc[0] == mob_loc[0] or mob_loc[1] == goku_loc[1]:
         print('game over')
         break
 
