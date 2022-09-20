@@ -46,18 +46,20 @@ goku_loc.center = x,y
 #enemy
 mob = pygame.image.load("mob.png")
 mob_loc = mob.get_rect() 
-mob_loc.center = x,y
+mob_loc.center = 100,200
 
 # Indicates pygame is running
 run = True
 
+
 # infinite loop 
 while run:
+
     #draw background
     draw_bg()
-
-    if mob_loc.center == goku_loc.center:
-    #  if goku_loc[0] == mob_loc[0] and mob_loc[1] > goku_loc[1] - 250:
+    if goku_loc == mob_loc.center:
+    # if mob_loc.center == goku_loc.center:
+    # if goku_loc[0] == mob_loc[0] and mob_loc[1] > goku_loc[1]:
         print('game over')
         break
     # creates time delay of 10ms 
@@ -95,9 +97,8 @@ while run:
     # win.fill((0, 0, 0))
     # drawing object on screen which is  a rectangle here 
     # pygame.draw.rect(screen, (255, 255, 255), (x, y, width, height))
-    
-
-    screen.blit(goku, (x,y))
+    goku_loc = (x,y)
+    screen.blit(goku, goku_loc)
     screen.blit(mob, (100,200))
     # it refreshes the window
     pygame.display.update() 
