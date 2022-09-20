@@ -2,89 +2,89 @@ import pygame
 from pygame.locals import *
 import random
 
-size = width, height = (1200,800)
-road_w = int(width/1.6)
-roadmark_w = int(width/80)
-right_lane = width/2 + road_w/4
-left_lane = width/2 - road_w/4
-speed = 1
+# import pygame module in this program 
+
 
 pygame.init()
-running = True
-screen = pygame.display.set_mode((size))
+screen_width = 1200
+screen_height = 800
+
+# create the display surface object  
+# of specific dimension..e(width,height).  
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+# set the pygame window name 
 pygame.display.set_caption("NeverEndingLOL")
-screen.fill((60,220,0))
+
+#background image
+bg_image = pygame.image.load('background.jpg')
 
 
 
-pygame.display.update()
+#function for drawing background
+def draw_bg():
+    scaled_bg = pygame.transform.scale(bg_image, (screen_width, screen_height))
+    screen.blit(scaled_bg, (0,0))
 
+# object current co-ordinates 
+x = screen_width/2
+y = screen_height/2
 
+# dimensions of the object 
+width = 20
+height = 20
 
+# velocity / speed of movement
+vel = 5
 
 #hero
 goku = pygame.image.load("goku.png")
 goku_loc = goku.get_rect() 
-goku_loc.center = right_lane, height*0.8
+goku_loc.center = x,y
 
-#enemy
-mob = pygame.image.load("mob.png")
-mob_loc = mob.get_rect() 
-mob_loc.center = left_lane, height*0.2
+# Indicates pygame is running
+run = True
 
-counter = 0 
-#game loop
-while running:
-    counter += 1
-    if counter == 5000:
-        speed += 0.15
-        counter = 0
-        print(' level up', speed)
-    #animate enemy
-    mob_loc[1] += speed
-    if mob_loc[1] > height:
-        if random.randint(0,1) == 0:
-            mob_loc.center = right_lane, -200
-        else:
-            mob_loc.center = left_lane, -200
+# infinite loop 
+while run:
+    #draw background
+    draw_bg()
+    # creates time delay of 10ms 
+    pygame.time.delay(10)
 
-#damage
-    if goku_loc[0] == mob_loc[0] and mob_loc[1] == goku_loc[1]:
-        print('game over')
-        break
-
-    #event listeners
+    # iterate over the list of Event objects  
+    # that was returned by pygame.event.get() method.  
     for event in pygame.event.get():
-        if event.type == QUIT:
-            running = False
-        if event.type == KEYDOWN:
-            if event.key in [K_a, K_LEFT]:
-                goku_loc = goku_loc.move ([-int(road_w/2), 0])
-            if event.key in [K_d, K_RIGHT]:
-                goku_loc = goku_loc.move ([int(road_w/2), 0])
-    pygame.draw.rect(
-        screen,
-        (50,50,50),
-        (width/2-road_w/2, 0, road_w, height)
-    )
-
-    pygame.draw.rect(
-        screen,
-        (255, 240, 60),
-        (width/2 - road_w/2 + roadmark_w*2, 0, roadmark_w, height)
-    )
-    pygame.draw.rect(
-        screen,
-        (255, 240, 60),
-        (width/2 + road_w/2 - roadmark_w*3, 0, roadmark_w, height)
-    )
-    pygame.draw.rect(
-        screen,
-        (255, 255, 255),
-        (width/2 - roadmark_w/2, 0, roadmark_w, height)
-    )
-    screen.blit(goku, goku_loc)
-    screen.blit(mob, mob_loc)
-    pygame.display.update()
-
+        # if event object type is QUIT  
+        # then quitting the pygame  
+        # and program both.  
+        if event.type == pygame.QUIT:
+            # it will make exit the while loop 
+            run = False
+    # stores keys pressed 
+    keys = pygame.key.get_pressed()
+    # if left arrow key is pressed
+    if keys[pygame.K_LEFT] and x>0:
+        # decrement in x co-ordinate
+        x -= vel
+    # if left arrow key is pressed
+    if keys[pygame.K_RIGHT] and x<screen_width-width:
+        # increment in x co-ordinate
+        x += vel
+    # if left arrow key is pressed   
+    if keys[pygame.K_UP] and y>0:
+        # decrement in y co-ordinate
+        y -= vel
+    # if left arrow key is pressed   
+    if keys[pygame.K_DOWN] and y<screen_height-height:
+        # increment in y co-ordinate
+        y += vel
+    # completely fill the surface object  
+    # with black colour  
+    # win.fill((0, 0, 0))
+    # drawing object on screen which is  a rectangle here 
+    pygame.draw.rect(screen, (255, 255, 255), (x, y, width, height))
+    # it refreshes the window
+    pygame.display.update() 
+# closes the pygame window 
 pygame.quit()
