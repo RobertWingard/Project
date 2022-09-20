@@ -35,12 +35,18 @@ width = 20
 height = 20
 
 # velocity / speed of movement
-vel = 5
+vel = 50
 
 #hero
 goku = pygame.image.load("goku.png")
 goku_loc = goku.get_rect() 
 goku_loc.center = x,y
+
+
+#enemy
+mob = pygame.image.load("mob.png")
+mob_loc = mob.get_rect() 
+mob_loc.center = x,y
 
 # Indicates pygame is running
 run = True
@@ -49,6 +55,11 @@ run = True
 while run:
     #draw background
     draw_bg()
+
+    if mob_loc.center == goku_loc.center:
+    #  if goku_loc[0] == mob_loc[0] and mob_loc[1] > goku_loc[1] - 250:
+        print('game over')
+        break
     # creates time delay of 10ms 
     pygame.time.delay(10)
 
@@ -87,6 +98,7 @@ while run:
     
 
     screen.blit(goku, (x,y))
+    screen.blit(mob, (100,200))
     # it refreshes the window
     pygame.display.update() 
 # closes the pygame window 
