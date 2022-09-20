@@ -68,7 +68,7 @@ while run:
         # decrement in x co-ordinate
         x -= vel
     # if left arrow key is pressed
-    if keys[pygame.K_RIGHT] and x<screen_width-width:
+    if keys[pygame.K_RIGHT] and x<screen_width-(width+goku.get_width()):
         # increment in x co-ordinate
         x += vel
     # if left arrow key is pressed   
@@ -76,14 +76,17 @@ while run:
         # decrement in y co-ordinate
         y -= vel
     # if left arrow key is pressed   
-    if keys[pygame.K_DOWN] and y<screen_height-height:
+    if keys[pygame.K_DOWN] and y<screen_height-(height+goku.get_height()):
         # increment in y co-ordinate
         y += vel
     # completely fill the surface object  
     # with black colour  
     # win.fill((0, 0, 0))
     # drawing object on screen which is  a rectangle here 
-    pygame.draw.rect(screen, (255, 255, 255), (x, y, width, height))
+    # pygame.draw.rect(screen, (255, 255, 255), (x, y, width, height))
+    
+
+    screen.blit(goku, (x,y))
     # it refreshes the window
     pygame.display.update() 
 # closes the pygame window 

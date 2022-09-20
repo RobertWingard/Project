@@ -39,7 +39,7 @@ y = screen_height/2
 #hero
 goku = pygame.image.load("goku.png")
 goku_loc = goku.get_rect() 
-goku_loc.center = screen_height*2
+# goku_loc.center = screen_height
 
 #enemy
 # mob = pygame.image.load("mob.png")
@@ -59,12 +59,12 @@ while running:
         counter = 0
         print(' level up', speed)
     #animate enemy
-    mob_loc[1] += speed
-    if mob_loc[1] > screen_height:
-        if random.randint(0,1) == 0:
-            mob_loc.center = right_lane, -200
-        else:
-            mob_loc.center = left_lane, -200
+    # mob_loc[1] += speed
+    # if mob_loc[1] > screen_height:
+    #     if random.randint(0,1) == 0:
+    #         mob_loc.center = right_lane, -200
+    #     else:
+    #         mob_loc.center = left_lane, -200
 
 #damage
     if mob_loc.center == goku_loc.center:
@@ -101,8 +101,8 @@ while running:
     # pygame.draw.rect(screen, (255, 255, 255), (x, y, width, height))
     # it refreshes the window
     # pygame.display.update() 
-    screen.blit(goku, goku_loc)
-    screen.blit(mob, mob_loc)
+    screen.blit(goku, (x,y))
+    # screen.blit(mob, mob_loc)
     pygame.display.update()
 
 pygame.quit()
