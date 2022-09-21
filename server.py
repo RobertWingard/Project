@@ -51,13 +51,16 @@ mob_loc.center = 100,200
 # Indicates pygame is running
 run = True
 
-
+print(mob_loc.center)
 # infinite loop 
 while run:
 
+    (currentMobX, currentMobY) = mob_loc.center
+    currentMobXLower = currentMobX - 15, currentMobY
+    currentMobXUpper = currentMobX + 15, currentMobY
     #draw background
     draw_bg()
-    if goku_loc == mob_loc.center:
+    if goku_loc.center >= currentMobXLower or goku_loc.center <= currentMobXUpper:
     # if mob_loc.center == goku_loc.center:
     # if goku_loc[0] == mob_loc[0] and mob_loc[1] > goku_loc[1]:
         print('game over')
