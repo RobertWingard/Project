@@ -40,13 +40,13 @@ vel = 10
 
 #hero
 goku_start_pos = x,y
-goku = Character('goku.xcf',goku_start_pos)
+goku = Character(goku_start_pos, 'goku.xcf')
 
 
 
 #enemy
-mob_start_pos =  100,200#this will be random at some point 
-mob = Character('mob.xcf', mob_start_pos)
+mob_start_pos =  100,200 #this will be random at some point 
+mob = Character(mob_start_pos, 'mob.xcf')
 
 # Indicates pygame is running
 run = True
@@ -75,28 +75,24 @@ while run:
     # stores keys pressed 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and x>0:
-        goku.move_left(vel)
+        goku.move_left()
 
-    if keys[pygame.K_RIGHT] and x<screen_width-(width+goku.get_width()):
-        goku.move_right(vel)
+    if keys[pygame.K_RIGHT] and x<screen_width-(width+goku.image.get_width()):
+        goku.move_right()
 
     if keys[pygame.K_UP] and y>0:
-        goku.move_up(vel)
+        goku.move_up()
 
-    if keys[pygame.K_DOWN] and y<screen_height-(height+goku.get_height()):
-        goku.move_down(vel)
-
-
-
-    screen.blit(goku, (x,y))
-    screen.blit(mob, (300,500))
-
-    goku_loc = goku.get_rect(topleft=(x,y))
-    mob_loc = mob.get_rect(topleft=(300,500))
+    if keys[pygame.K_DOWN] and y<screen_height-(height+goku.image.get_height()):
+        goku.move_down()
 
 
-    # print(goku_loc)
-    # print(mob_loc)
+
+    goku.draw(screen)
+    mob.draw(screen)
+
+    goku_loc = goku.rect
+    mob_loc = mob.rect
     if goku_loc.colliderect(mob_loc): 
         print('game over')
         break

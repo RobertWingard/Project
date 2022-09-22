@@ -10,24 +10,28 @@ class Character:
         self.currentX, self.currentY = start_pos
 
     def move_up(self):
-        self.currentX +=1
+        self.currentY += -10
         self.update()
 
     def move_down(self):
-        self.currentX += -1
+        self.currentY += 10
         self.update()
 
     def move_left(self):
-        self.currentY += 1
+        self.currentX += -10
         self.update()
 
     def move_right(self):
-        self.currentY += -1
+        self.currentX += 10
         self.update()
 
-    def draw(self, screen):
-        screen.blit(self.image, self.pos)
+    def draw(self,screen):
+        # screen_width = 1200
+        # screen_height = 800
+        # screen = pygame.display.set_mode((screen_width, screen_height))
+        screen.blit(self.image, (self.currentX, self.currentY))
         self.update()
+
 
     def update(self):
-        self.rect = self.image.get_rect(topleft=self.pos)
+        self.rect = self.image.get_rect(topleft=(self.currentX, self.currentY))
