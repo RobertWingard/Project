@@ -60,7 +60,7 @@ def spawn_mob()
             randY = random.randint(0, screen_height)
             mob_start_pos =  randX,randY #this will be random at some point 
             mob = Character(mob_start_pos, 'mob.xcf')
-
+            mobSpawned = true
         if spawnSide == 1
             mob.move_right(vel)
         else
