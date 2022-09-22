@@ -43,11 +43,12 @@ goku_start_pos = x,y
 goku = Character(goku_start_pos, 'goku.xcf')
 
 
-def start_spawning_mobs():
-    currentMobCount = 0
+def start_spawning_mobs(mob_count):
+    currentMobCount = mob_count
     while run:
         if currentMobCount == 0
             spawn_mob()
+            currentMobCount--
 
 def spawn_mob()
     mobSpawned = false
