@@ -43,6 +43,30 @@ goku_start_pos = x,y
 goku = Character(goku_start_pos, 'goku.xcf')
 
 
+def start_spawning_mobs():
+    currentMobCount = 0
+    while run:
+        if currentMobCount == 0
+            spawn_mob()
+
+def spawn_mob()
+    mobSpawned = false
+    spawnSide = 0
+    vel = 10
+    while run:        
+        if mobSpawned == false        
+            spawnSide = random.randint(1,2)
+            randX = 0 if spawnSide == 1 else screen_width
+            randY = random.randint(0, screen_height)
+            mob_start_pos =  randX,randY #this will be random at some point 
+            mob = Character(mob_start_pos, 'mob.xcf')
+
+        if spawnSide == 1
+            mob.move_right(vel)
+        else
+            mob.move_left(vel)
+        
+
 
 #enemy
 mob_start_pos =  100,200 #this will be random at some point 
@@ -57,8 +81,7 @@ while run:
     #draw background
     draw_bg()
 
-
-    
+    start_spawning_mobs()
 
     # creates time delay of 10ms 
     pygame.time.delay(10)
