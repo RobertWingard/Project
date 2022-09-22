@@ -20,7 +20,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("NeverEndingLOL")
 
 #background image
-bg_image = pygame.image.load('background.jpg')
+bg_image = pygame.image.load('background2.jpg')
 
 #loop to get mob to spawn randomly
 # def spawn():
