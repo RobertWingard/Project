@@ -1,7 +1,8 @@
 import pygame
 from pygame.locals import *
 import random
-from character import Character
+from character import Character,Enemy
+
 
 pygame.init()
 screen_width = 1200
@@ -19,6 +20,16 @@ pygame.display.set_caption("NeverEndingLOL")
 
 #background image
 bg_image = pygame.image.load('background.jpg')
+
+#loop to get mob to spawn randomly
+# def spawn():
+#     mob_count = 0
+#     # spawn enemy randomly around the screen
+#     if mob_count == 0
+#     # mob_start_pos = random 
+#         spawn mob =  random.randint(random,random)
+    # mob = Character(mob_start_pos, 'mob.xcf')    image
+    # move mob left or right across the screen.
 
 
 
@@ -38,6 +49,8 @@ height = 20
 # velocity / speed of movement
 vel = 10
 
+
+
 #hero
 goku_start_pos = x,y
 goku = Character(goku_start_pos, 'goku.xcf')
@@ -46,7 +59,11 @@ goku = Character(goku_start_pos, 'goku.xcf')
 
 #enemy
 mob_start_pos =  100,200 #this will be random at some point 
-mob = Character(mob_start_pos, 'mob.xcf')
+mob1 = Enemy(mob_start_pos, 'mob.xcf')
+mob2 = Enemy(mob_start_pos, 'mob.xcf')
+mob3 = Enemy(mob_start_pos, 'mob.xcf')
+mob4 = Enemy(mob_start_pos, 'mob.xcf')
+mob5 = Enemy(mob_start_pos, 'mob.xcf')
 
 # Indicates pygame is running
 run = True
@@ -74,26 +91,35 @@ while run:
             run = False
     # stores keys pressed 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and x>0:
+    if keys[pygame.K_LEFT] and goku.currentX>0:
         goku.move_left()
 
-    if keys[pygame.K_RIGHT] and x<screen_width-(width+goku.image.get_width()):
+    if keys[pygame.K_RIGHT] and goku.currentX<screen_width-(width+goku.image.get_width()):
         goku.move_right()
 
-    if keys[pygame.K_UP] and y>0:
+    if keys[pygame.K_UP] and goku.currentY>0:
         goku.move_up()
 
-    if keys[pygame.K_DOWN] and y<screen_height-(height+goku.image.get_height()):
+    if keys[pygame.K_DOWN] and goku.currentY<screen_height-(height+goku.image.get_height()):
         goku.move_down()
 
 
 
     goku.draw(screen)
-    mob.draw(screen)
+    mob1.draw(screen)
+    mob2.draw(screen)
+    mob3.draw(screen)
+    mob4.draw(screen)
+    # mob5.draw(screen)
 
     goku_loc = goku.rect
-    mob_loc = mob.rect
-    if goku_loc.colliderect(mob_loc): 
+    mob_loc1 = mob1.rect
+    mob_loc2 = mob2.rect
+    mob_loc3 = mob3.rect
+    mob_loc4 = mob4.rect
+    # mob_loc5 = mob5.rect
+
+    if goku_loc.colliderect(mob_loc1) or goku_loc.colliderect(mob_loc2) or goku_loc.colliderect(mob_loc3) or goku_loc.colliderect(mob_loc4): #or goku_loc.colliderect(mob_loc5) : 
         print('game over')
         break
 
