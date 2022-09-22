@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import random
 from character import Character,Enemy
+import time
 
 
 pygame.init()
@@ -56,31 +57,6 @@ goku_start_pos = x,y
 goku = Character(goku_start_pos, 'goku.xcf')
 
 
-def start_spawning_mobs(mob_count):
-    currentMobCount = mob_count
-    while run:
-        if currentMobCount == 0
-            spawn_mob()
-            currentMobCount--
-
-def spawn_mob()
-    mobSpawned = false
-    spawnSide = 0
-    vel = 10
-    while run:        
-        if mobSpawned == false        
-            spawnSide = random.randint(1,2)
-            randX = 0 if spawnSide == 1 else screen_width
-            randY = random.randint(0, screen_height)
-            mob_start_pos =  randX,randY #this will be random at some point 
-            mob = Character(mob_start_pos, 'mob.xcf')
-            mobSpawned = true
-        if spawnSide == 1
-            mob.move_right(vel)
-        else
-            mob.move_left(vel)
-        
-
 
 #enemy
 mob_start_pos =  100,200 #this will be random at some point 
@@ -99,7 +75,8 @@ while run:
     #draw background
     draw_bg()
 
-    start_spawning_mobs()
+
+    
 
     # creates time delay of 10ms 
     pygame.time.delay(10)
@@ -145,7 +122,12 @@ while run:
 
     if goku_loc.colliderect(mob_loc1) or goku_loc.colliderect(mob_loc2) or goku_loc.colliderect(mob_loc3) or goku_loc.colliderect(mob_loc4): #or goku_loc.colliderect(mob_loc5) : 
         print('game over')
-        break
+        time.sleep(5)
+        mob1.x = random.choice([0,1200])
+        mob2.x = random.choice([0,1200])
+        mob3.x = random.choice([0,1200])
+        mob4.x = random.choice([0,1200])
+        continue
 
     # it refreshes the window
     pygame.display.update() 

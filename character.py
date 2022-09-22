@@ -67,12 +67,16 @@ class Enemy:
         self.currentX += 10
         self.update()
 
+
+
     def draw(self,screen):
+        move = 5
         # screen_width = 1200
         # screen_height = 800
         # screen = pygame.display.set_mode((screen_width, screen_height))
         if self.direction == 'right':
             self.x +=5
+            # self.y += random.randint(-50,50)
             if self.x > 1200:
                 self.x = random.choice([0,1200])
                 self.y = random.randint(100,800)
@@ -83,6 +87,7 @@ class Enemy:
                 
         if self.direction == 'left':
             self.x +=-5
+            # self.y += random.randint(-5,5)
             if self.x < 0:
                 self.x = random.choice([0,1200])
                 self.y = random.randint(100,800)
